@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "wbshop-addons",
+  "version": "${version}",
+  "name": "wbshop-addons",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/skycatminepokie/wbshop-addons"
+  },
+  "license": "MIT",
+  "icon": "assets/wbshop-addons/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.skycat.wbshopaddons.client.WBShopAddonsClient"
+    ],
+    "main": [
+      "com.skycat.wbshopaddons.WBShopAddons"
+    ]
+  },
+  "mixins": [
+    "wbshop-addons.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
