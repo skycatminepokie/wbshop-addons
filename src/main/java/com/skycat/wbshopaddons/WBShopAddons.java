@@ -8,6 +8,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.Items;
@@ -32,5 +33,6 @@ public class WBShopAddons implements ModInitializer {
         Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, "donater"), DONATER_BLOCK);
         Registry.register(Registries.ITEM, Identifier.of(MOD_ID, "donater"), DONATER_ITEM);
         PolymerBlockUtils.registerBlockEntity(DONATER_BLOCK_ENTITY);
+        ItemStorage.SIDED.registerForBlockEntity(((donaterBlockEntity, direction) -> donaterBlockEntity.inventoryWrapper), DONATER_BLOCK_ENTITY);
     }
 }

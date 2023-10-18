@@ -13,6 +13,7 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
     maven { url 'https://maven.nucleoid.xyz' }
+    maven { url 'https://api.modrinth.com/maven'}
 }
 
 dependencies {
@@ -24,6 +25,7 @@ dependencies {
         // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation include("eu.pb4:polymer-core:0.5.16+1.20.1")
+    modImplementation "maven.modrinth:wbshop:2.0.1+1.20.1"
 }
 
 processResources {
