@@ -30,6 +30,8 @@ public class DonaterBlockEntity extends BlockEntity {
         super.writeNbt(nbt);
     }
 
+
+
     private final SimpleInventory inventory = new SimpleInventory(1) {
         @Override
         public boolean canInsert(ItemStack stack) {

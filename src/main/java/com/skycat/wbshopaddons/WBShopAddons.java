@@ -32,7 +32,7 @@ public class WBShopAddons implements ModInitializer {
     public void onInitialize() {
         Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, "donater"), DONATER_BLOCK);
         Registry.register(Registries.ITEM, Identifier.of(MOD_ID, "donater"), DONATER_ITEM);
-        PolymerBlockUtils.registerBlockEntity(DONATER_BLOCK_ENTITY);
         ItemStorage.SIDED.registerForBlockEntity(((donaterBlockEntity, direction) -> donaterBlockEntity.inventoryWrapper), DONATER_BLOCK_ENTITY);
+        PolymerBlockUtils.registerBlockEntity(DONATER_BLOCK_ENTITY);
     }
 }
