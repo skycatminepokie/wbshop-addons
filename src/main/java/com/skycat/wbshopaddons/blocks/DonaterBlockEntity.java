@@ -3,15 +3,13 @@ package com.skycat.wbshopaddons.blocks;
 import com.skycat.wbshop.WBShop;
 import com.skycat.wbshop.econ.Economy;
 import com.skycat.wbshopaddons.WBShopAddons;
-import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
-public class DonaterBlockEntity extends BlockEntity {
+public class DonaterBlockEntity extends DispenserBlockEntity {
     private long points = 0;
 
     public DonaterBlockEntity(BlockPos pos, BlockState state) {
@@ -30,30 +28,21 @@ public class DonaterBlockEntity extends BlockEntity {
         super.writeNbt(nbt);
     }
 
-
-
-    private final SimpleInventory inventory = new SimpleInventory(1) {
-        @Override
-        public boolean canInsert(ItemStack stack) {
-            return true;
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        Economy econ = WBShop.getEconomy();
+        if (econ != null) {
+            points += WBShop.getEconomy().pointValueOf(stack);
         }
+    }
 
-        @Override
-        public ItemStack addStack(ItemStack stack) {
-            Economy econ = WBShop.getEconomy();
-            if (econ != null) {
-                points += econ.pointValueOf(stack);
-                markDirty();
-                return ItemStack.EMPTY;
-            }
-            return stack;
-        }
+    public long getPoints() {
+        return points;
+    }
 
-        @Override
-        public void markDirty() {
-            DonaterBlockEntity.this.markDirty();
-        }
-    };
+    public void setPoints(long points) {
+        this.points = points;
+        markDirty();
+    }
 
-    public final InventoryStorage inventoryWrapper = InventoryStorage.of(inventory, null);
 }
