@@ -4,6 +4,7 @@ import com.skycat.wbshopaddons.blocks.DonaterBlock;
 import com.skycat.wbshopaddons.blocks.DonaterBlockEntity;
 import eu.pb4.polymer.core.api.block.PolymerBlockUtils;
 import eu.pb4.polymer.core.api.item.PolymerBlockItem;
+import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -32,5 +33,7 @@ public class WBShopAddons implements ModInitializer {
         Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, "donater"), DONATER_BLOCK);
         Registry.register(Registries.ITEM, Identifier.of(MOD_ID, "donater"), DONATER_ITEM);
         PolymerBlockUtils.registerBlockEntity(DONATER_BLOCK_ENTITY);
+
+        PolymerResourcePackUtils.addModAssets(MOD_ID);
     }
 }

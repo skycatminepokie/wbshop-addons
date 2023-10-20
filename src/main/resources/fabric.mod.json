@@ -17,6 +17,9 @@
     ],
     "main": [
       "com.skycat.wbshopaddons.WBShopAddons"
+    ],
+    "fabric-datagen": [
+      "com.skycat.wbshopaddons.datagen.DataGenerator"
     ]
   },
   "mixins": [

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "l": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "pattern": [
+    "i i",
+    "ili",
+    "iii"
+  ],
+  "result": {
+    "item": "wbshop-addons:donater"
+  },
+  "show_notification": true
+}

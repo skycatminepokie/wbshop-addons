@@ -30,6 +30,9 @@ dependencies {
     modImplementation "eu.pb4:common-economy-api:1.1.1"
     modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
     modImplementation ("eu.pb4:sgui:1.2.2+1.20")
+    modImplementation ("xyz.nucleoid:server-translations-api:2.0.0+1.20")
+    modImplementation include("eu.pb4:polymer-resource-pack:0.5.16+1.20.1")
+
 }
 
 processResources {
@@ -89,5 +92,29 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    'src/main/generated'
+            ]
+        }
+    }
+}
+
+loom {
+    runs {
+        datagen {
+            inherit server
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+            vmArg "-Dfabric-api.datagen.modid=${modid}"
+
+            runDir "build/datagen"
+        }
     }
 }
