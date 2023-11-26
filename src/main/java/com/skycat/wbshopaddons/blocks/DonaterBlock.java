@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class DonaterBlock extends SimplePolymerBlock implements BlockEntityProvider {
@@ -41,14 +42,25 @@ public class DonaterBlock extends SimplePolymerBlock implements BlockEntityProvi
                 if (receivingPower && !triggered) { // Hey, we should turn on
                     world.setBlockState(pos, state.with(TRIGGERED, false));
 
-                    BlockPointerImpl blockPointer = new BlockPointerImpl(serverWorld, pos);
-                    DonaterBlockEntity blockEntity = blockPointer.getBlockEntity();
-                    if (blockEntity.getPoints() > 0) {
-                        dropStack(world, pos, Direction.DOWN, Economy.makeVoucher(blockEntity.getPoints()));
-                        blockEntity.setPoints(0);
-                    }
+                    tryDropVoucher(pos, serverWorld);
                 }
             }
+        }
+    }
+
+    @Override
+    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+        if (world instanceof ServerWorld serverWorld) {
+            tryDropVoucher(pos, serverWorld);
+        }
+    }
+
+    private static void tryDropVoucher(BlockPos pos, ServerWorld serverWorld) {
+        BlockPointerImpl blockPointer = new BlockPointerImpl(serverWorld, pos);
+        DonaterBlockEntity blockEntity = blockPointer.getBlockEntity();
+        if (blockEntity.getPoints() > 0) {
+            dropStack(serverWorld, pos, Direction.DOWN, Economy.makeVoucher(blockEntity.getPoints()));
+            blockEntity.setPoints(0);
         }
     }
 
