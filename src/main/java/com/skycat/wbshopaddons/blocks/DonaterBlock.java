@@ -32,7 +32,7 @@ public class DonaterBlock extends SimplePolymerBlock implements BlockEntityProvi
     @SuppressWarnings("deprecation")
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        if (!world.isClient() && world instanceof ServerWorld serverWorld) { // Equiv. statements? Maybe?
+        if (world instanceof ServerWorld serverWorld) {
             boolean receivingPower = world.isReceivingRedstonePower(pos);
             Boolean triggered = state.get(TRIGGERED);
             if (!receivingPower && triggered) { // Hey, we should turn off
