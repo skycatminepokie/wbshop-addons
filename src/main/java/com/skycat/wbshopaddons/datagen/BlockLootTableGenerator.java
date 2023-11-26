@@ -4,7 +4,7 @@ import com.skycat.wbshopaddons.WBShopAddons;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 
-public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
+public class BlockLootTableGenerator extends FabricBlockLootTableProvider { // https://fabricmc.net/wiki/tutorial:datagen_loot
     public BlockLootTableGenerator(FabricDataOutput dataOutput) {
         super(dataOutput);
     }

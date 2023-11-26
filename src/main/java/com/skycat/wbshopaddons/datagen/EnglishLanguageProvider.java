@@ -3,7 +3,7 @@ package com.skycat.wbshopaddons.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 
-import static com.skycat.wbshopaddons.WBShopAddons.*;
+import static com.skycat.wbshopaddons.WBShopAddons.DONATER_BLOCK;
 
 public class EnglishLanguageProvider extends FabricLanguageProvider {
     protected EnglishLanguageProvider(FabricDataOutput dataOutput) {
