@@ -118,3 +118,14 @@ loom {
         }
     }
 }
+
+// Credit: @daomephsta
+runDatagen.finalizedBy 'copyLangFiles'
+
+tasks.register('copyLangFiles', Copy) {
+    // String paths passed to from() and into() are relative to the project directory by default
+    from('src/main/generated/assets/wbshop-addons/lang') {
+        include '*.json'
+    }
+    into 'src/main/generated/data/wbshop-addons/lang'
+}
