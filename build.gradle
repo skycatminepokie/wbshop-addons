@@ -24,15 +24,20 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation include("eu.pb4:polymer-core:0.5.16+1.20.1")
-    modImplementation 'com.github.skycatminepokie:wbshop:-SNAPSHOT'
-    modImplementation "eu.pb4:common-economy-api:1.1.1"
-    modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
-    modImplementation ("eu.pb4:sgui:1.2.2+1.20")
-    modImplementation ("xyz.nucleoid:server-translations-api:2.0.0+1.20")
-    modImplementation include("eu.pb4:polymer-resource-pack:0.5.16+1.20.1")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
+    modImplementation include("eu.pb4:polymer-core:${project.polymer_version}")
+    modImplementation include("eu.pb4:polymer-resource-pack:${project.polymer_version}")
+
+    modImplementation("com.github.skycatminepokie:wbshop:${project.wbshop_version}")
+
+    modImplementation("eu.pb4:common-economy-api:1.1.1")
+
+    modImplementation("me.lucko:fabric-permissions-api:0.2-SNAPSHOT")
+
+    modImplementation("eu.pb4:sgui:${project.sgui_version}")
+
+    modImplementation("xyz.nucleoid:server-translations-api:${project.server_translations_api_version}")
 }
 
 processResources {
