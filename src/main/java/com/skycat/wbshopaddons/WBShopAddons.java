@@ -23,7 +23,7 @@ public class WBShopAddons implements ModInitializer {
     public static final BlockEntityType<DonaterBlockEntity> DONATER_BLOCK_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             Identifier.of(MOD_ID, "donater"),
-            FabricBlockEntityTypeBuilder.create(DonaterBlockEntity::new, DONATER_BLOCK).build());
+            BlockEntityType.Builder.create(DonaterBlockEntity::new, DONATER_BLOCK).build());
 
     /**
      * Runs the mod initializer.

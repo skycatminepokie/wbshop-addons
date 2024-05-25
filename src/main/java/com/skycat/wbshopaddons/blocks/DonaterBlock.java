@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -28,9 +27,12 @@ public class DonaterBlock extends SimplePolymerBlock implements BlockEntityProvi
     }
 
     private static void tryDropVoucher(BlockPos pos, ServerWorld world) {
-        BlockPointerImpl blockPointer = new BlockPointerImpl(world, pos);
-        DonaterBlockEntity blockEntity = blockPointer.getBlockEntity();
-        tryDropVoucher(pos, world, blockEntity);
+        try {
+            DonaterBlockEntity blockEntity = (DonaterBlockEntity) world.getBlockEntity(pos);
+            tryDropVoucher(pos, world, blockEntity);
+        } catch (ClassCastException e) {
+            Utils.log("Tried to drop voucher without a donater block entity at pos " + pos + ", skipping.", LogLevel.WARN);
+        }
     }
 
     private static void tryDropVoucher(BlockPos pos, ServerWorld world, DonaterBlockEntity blockEntity) {

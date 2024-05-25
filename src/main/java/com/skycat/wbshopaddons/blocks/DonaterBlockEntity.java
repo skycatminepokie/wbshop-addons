@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
 public class DonaterBlockEntity extends DispenserBlockEntity {
@@ -30,9 +31,9 @@ public class DonaterBlockEntity extends DispenserBlockEntity {
 
     @Override
     public void setStack(int slot, ItemStack stack) {
-        Economy econ = WBShop.getEconomy();
-        if (econ != null) {
-            points += WBShop.getEconomy().pointValueOf(stack);
+        if (world instanceof ServerWorld serverWorld) {
+            Economy econ = WBShop.getEconomy(serverWorld.getServer());
+            points += econ.pointValueOf(stack);
         }
     }
 
